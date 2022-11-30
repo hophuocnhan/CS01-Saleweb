@@ -31,7 +31,7 @@ class Product(BaseModel):
     name = Column(String(50), nullable=False)
     price = Column(Float, default=0)
     description = Column(Text)
-    image = Column(String(100))
+    image = Column(String(1000))
     active = Column(Boolean, default=True)
     category_id = Column(Integer, ForeignKey(Category.id), nullable=False)
 
@@ -40,7 +40,7 @@ class User(BaseModel, UserMixin):
     name = Column(String(50), nullable=False)
     username = Column(String(50), nullable=False)
     password = Column(String(50), nullable=False)
-    image = Column(String(50), nullable=False)
+    image = Column(String(1000), nullable=False)
     active = Column(Boolean, default=True)
     user_role = Column(Enum(UserRole), default=UserRole.USER)
 
@@ -67,8 +67,8 @@ if __name__ == '__main__':
         import hashlib
 
         password = str(hashlib.md5('123456'.encode('utf-8')).hexdigest())
-        u = User(name='Nhan', username='admin', password=password,
-                 user_role=UserRole.ADMIN, image='https:')
+        u = User(name='nhan', username='admin', password=password,
+                 user_role=UserRole.ADMIN, image='http:/')
         db.session.add(u)
         db.session.commit()
         # db.create_all()
